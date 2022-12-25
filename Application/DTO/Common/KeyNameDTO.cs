@@ -18,12 +18,19 @@ public class KeyNameDTO : IKeyName
     public string Name { get; set; } = string.Empty;
 }
 
-public interface IKeyNameActiveDTO : IKeyName
+public interface IKeyNameDescription: IKeyName
 {
-    public bool IsActive { get; set; }
+    public string Description { get; set; }
 }
 
-public class KeyNameActiveDTO : KeyNameDTO, IKeyNameActiveDTO
+public interface IKeyNameDescPrice: IKeyNameDescription
 {
-    public bool IsActive { get; set; }
+    public int Price { get; set; }
+}
+
+public class KeyNameDescPriceDTO : AuditableIntIdDTO, IKeyNameDescPrice
+{
+    public string Name { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
+    public int Price { get; set; } = 0;
 }

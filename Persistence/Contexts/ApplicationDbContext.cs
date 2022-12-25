@@ -1,12 +1,12 @@
 ﻿using Application.Interfaces.Services;
 
 using Domain.Common;
-//using Domain.Entities;
-//using Infrastructure.Persistence.Configurations;
+using Domain.Entities;
+using Infrastructure.Persistence.Configurations;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-
+using Persistence.Configurations;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -34,8 +34,11 @@ public class ApplicationDbContext : DbContext
         Database.EnsureCreated();
     }
 
-    //public DbSet<DepartmentProfileEntity> DepartmentProfiles { get; set; }
-    //public DbSet<DiagnosisEntity> Diagnoses { get; set; }
+    public DbSet<SiteTypeEntity> SiteTypes { get; set; }
+    public DbSet<SiteModulesEntity> SiteModules { get; set; }
+    public DbSet<SiteDesignEntity> SiteDesigns { get; set; }
+    public DbSet<OptionalDesignEntity> OptionalDesigns { get; set; }
+    public DbSet<SiteSupportEntity> SiteSupports { get; set; }
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -50,8 +53,11 @@ public class ApplicationDbContext : DbContext
         builder.HasPostgresExtension("hstore");
         builder.HasPostgresExtension("ltree");
 
-        //builder.ApplyConfiguration(new DepartmentProfileConfiguration());
-        //builder.ApplyConfiguration(new DiagnosisConfiguration());
+        builder.ApplyConfiguration(new SiteTypeConfiguration());
+        builder.ApplyConfiguration(new SiteModulesConfiguration());
+        builder.ApplyConfiguration(new SiteDesignConfiguration());
+        builder.ApplyConfiguration(new OptionalDesignConfiguration());
+        builder.ApplyConfiguration(new SiteSupportConfiguration());
 
 
         base.OnModelCreating(builder);

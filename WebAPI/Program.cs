@@ -75,7 +75,7 @@ using (var scope = app.Services.CreateScope())
 
         var persistenceContext = services.GetRequiredService<ApplicationDbContext>();
         await persistenceContext.Database.MigrateAsync();
-        //await Infrastructure.Persistence.Seeds.DefaultDrugSeed.SeedAsync(persistenceContext);
+        await Persistence.Seeds.DatabaseInitializer.SeedAsync(persistenceContext);
 
         Log.Information("Migrations Applied");
     }
