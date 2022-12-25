@@ -1,7 +1,7 @@
 ﻿using Application.Extensions;
 using Application.Interfaces.Services;
 
-using Infrastructure.Shared.Tools;
+using Shared.Tools;
 
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.Extensions;
 
-namespace Infrastructure.Shared.Services;
+namespace Shared.Services;
 
 public class ExcelService : IExcelService
 {

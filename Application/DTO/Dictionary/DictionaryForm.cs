@@ -27,10 +27,5 @@ public class DictionaryFormBalidator : AbstractValidator<DictionaryForm>
             .NotNull()
             .NotEmpty()
             .WithMessage("{PropertyName}: Error!");
-
-        RuleFor(p => p.Price)
-            .NotNull()
-            .NotEmpty()
-            .WithMessage("{PropertyName}: Error!");
     }
 }

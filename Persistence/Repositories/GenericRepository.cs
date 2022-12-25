@@ -1,5 +1,5 @@
 ﻿using Application.Interfaces.Repositories;
-using Infrastructure.Persistence.Contexts;
+using Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 
 using System;
@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Persistence.Repositories;
+namespace Persistence.Repositories;
 
 public class GenericRepository<T> : IGenericRepository<T> where T : class
 {

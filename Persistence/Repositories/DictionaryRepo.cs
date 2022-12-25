@@ -4,7 +4,7 @@ using AutoMapper;
 using Domain.Common;
 using Domain.Data;
 using Domain.Entities;
-using Infrastructure.Persistence.Contexts;
+using Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -44,45 +44,50 @@ public class DictionaryRepo : IDictionaryRepo
         GC.SuppressFinalize(this);
     }
 
-    public async Task<IDictionaryEntity> CreateNewRecordAsync(IDictionaryEntity data, DictionaryIdentificator dict)
+    public async Task<int> CreateNewRecordAsync(DictionaryForm data, DictionaryIdentificator dict)
     {
+        int resId = 0;
         switch (dict)
         {
             case DictionaryIdentificator.SityType:
                 var objST = _mapper.Map<SiteTypeEntity>(data);
                 await _context.SiteTypes.AddAsync(objST);
                 await _context.SaveChangesAsync();
+                resId = objST.Id;
                 break;
 
             case DictionaryIdentificator.SiteModules:
                 var objSM = _mapper.Map<SiteModulesEntity>(data);
                 await _context.SiteModules.AddAsync(objSM);
                 await _context.SaveChangesAsync();
+                resId = objSM.Id;
                 break;
 
             case DictionaryIdentificator.SiteDesign:
                 var objSD = _mapper.Map<SiteDesignEntity>(data);
                 await _context.SiteDesigns.AddAsync(objSD);
                 await _context.SaveChangesAsync();
+                resId = objSD.Id;
                 break;
 
             case DictionaryIdentificator.OptionalDesign:
                 var objOD = _mapper.Map<OptionalDesignEntity>(data);
                 await _context.OptionalDesigns.AddAsync(objOD);
                 await _context.SaveChangesAsync();
+                resId = objOD.Id;
                 break;
 
             case DictionaryIdentificator.SiteSupport:
                 var objSS = _mapper.Map<SiteSupportEntity>(data);
                 await _context.SiteSupports.AddAsync(objSS);
                 await _context.SaveChangesAsync();
+                resId = objSS.Id;
                 break;
 
             default:
                 break;
         }
-
-        return data;
+        return resId;
     }
 
     public async Task<bool> DeleteSelectRecordsAsync(List<int> data, DictionaryIdentificator dict)

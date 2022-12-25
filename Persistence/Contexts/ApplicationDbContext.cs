@@ -2,11 +2,10 @@
 
 using Domain.Common;
 using Domain.Entities;
-using Infrastructure.Persistence.Configurations;
+using Persistence.Configurations;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using Persistence.Configurations;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,7 +14,7 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Persistence.Contexts;
+namespace Persistence.Contexts;
 
 public class ApplicationDbContext : DbContext
 {

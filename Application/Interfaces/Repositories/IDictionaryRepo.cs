@@ -15,7 +15,7 @@ public interface IDictionaryRepo
 
     Task<IReadOnlyList<IDictionaryEntity>> GetAllAsync(DictionaryIdentificator dict);
 
-    Task<IDictionaryEntity> CreateNewRecordAsync(IDictionaryEntity data, DictionaryIdentificator dict);
+    Task<int> CreateNewRecordAsync(DictionaryForm data, DictionaryIdentificator dict);
 
     Task<IDictionaryEntity> UpdateRecordAsync(int id, DictionaryForm data, DictionaryIdentificator dict);
 

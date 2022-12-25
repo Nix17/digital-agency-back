@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Persistence.Extensions;
+namespace Persistence.Extensions;
 
 public static partial class GuidExtensions
 {

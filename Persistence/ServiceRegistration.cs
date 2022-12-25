@@ -1,8 +1,8 @@
 ﻿using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
 
-using Infrastructure.Persistence.Contexts;
-using Infrastructure.Persistence.Repositories;
+using Persistence.Contexts;
+using Persistence.Repositories;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -14,7 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Persistence;
+namespace Persistence;
 
 public static class ServiceRegistration
 {

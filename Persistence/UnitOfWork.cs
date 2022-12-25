@@ -1,8 +1,7 @@
 ﻿using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
 using AutoMapper;
-using Infrastructure.Persistence.Contexts;
-using Infrastructure.Persistence.Repositories;
+using Persistence.Contexts;
 using Persistence.Repositories;
 using System;
 using System.Collections.Generic;
@@ -10,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Persistence;
+namespace Persistence;
 
 public class UnitOfWork : IUnitOfWork
 {

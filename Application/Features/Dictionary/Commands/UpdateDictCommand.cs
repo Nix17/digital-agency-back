@@ -1,4 +1,5 @@
-﻿using Application.DTO.Dictionary;
+﻿using Application.DTO.Common;
+using Application.DTO.Dictionary;
 using Application.Interfaces.Services;
 using Application.Wrappers;
 using AutoMapper;
@@ -14,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Dictionary.Commands;
 
-public class UpdateDictCommand: IRequest<Response<string>>
+public class UpdateDictCommand: IRequest<Response<MessageResponse>>
 {
     public UpdateDictCommand(DictionaryIdentificator dictionary, int id, DictionaryForm data)
     {
@@ -28,7 +29,7 @@ public class UpdateDictCommand: IRequest<Response<string>>
     public DictionaryForm Data { get; }
 }
 
-public class UpdateDictCommandHandler : IRequestHandler<UpdateDictCommand, Response<string>>
+public class UpdateDictCommandHandler : IRequestHandler<UpdateDictCommand, Response<MessageResponse>>
 {
     private readonly IUnitOfWork _uow;
     private readonly IMapper _mapper;
@@ -39,11 +40,11 @@ public class UpdateDictCommandHandler : IRequestHandler<UpdateDictCommand, Respo
         _mapper = mapper;
     }
 
-    public async Task<Response<string>> Handle(UpdateDictCommand cmd, CancellationToken cancellationToken)
+    public async Task<Response<MessageResponse>> Handle(UpdateDictCommand cmd, CancellationToken cancellationToken)
     {
         var res = await _uow.DictRepo.UpdateRecordAsync(cmd.Id, cmd.Data, cmd.Dictionary);
-        var msg = $"Item with id = { res.Id } was updated!";
-        return new Response<string>(msg);
+        var msg = $"Item with id = {res.Id} was updated!";
+        return new Response<MessageResponse>(new MessageResponse(msg));
     }
 }
 

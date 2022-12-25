@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Shared.Tools;
+namespace Shared.Tools;
 
 public static class TableTool
 {

@@ -13,11 +13,7 @@ public class SiteSupportEntity : DictionaryEntity, IDictionaryEntity
     {
     }
 
-    public SiteSupportEntity(string name, string description, int price, string iniName = "") : base(name, description, price)
+    public SiteSupportEntity(string name, string description, int price) : base(name, description, price)
     {
-        Created = DateTime.Now;
-        LastModified = DateTime.Now;
-        CreatedBy = iniName;
-        LastModifiedBy = iniName;
     }
 }

@@ -1,7 +1,6 @@
 ﻿using Application.Behaviours;
 using Application.Interfaces.Services;
 using Application.Mappings;
-using Application.Mappings;
 //using Application.Services;
 
 using AutoMapper;
@@ -29,13 +28,8 @@ public static class ServiceExtensions
         {
             var cache = provider.GetService<IMemoryCacheExtended>();
             cfg.AddProfile(new GeneralProfile(cache));
-            //cfg.AddProfile(new DictionaryProfile(cache));
-            //cfg.AddProfile(new DoctorProfile(cache));
-            //cfg.AddProfile(new MaterialProfile(cache));
-            //cfg.AddProfile(new DepartmentProfile(cache));
-            //cfg.AddProfile(new InstitutionProfile(cache));
-            //cfg.AddProfile(new PatientProfile(cache));
-            //cfg.AddProfile(new SampleProfile(cache));
+            cfg.AddProfile(new DictionaryProfile(cache));
+
         }).CreateMapper());
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         services.AddMediatR(Assembly.GetExecutingAssembly());

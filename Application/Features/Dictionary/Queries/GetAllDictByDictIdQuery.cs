@@ -23,7 +23,7 @@ public class GetAllDictByDictIdQuery: IRequest<Response<List<KeyNameDescPriceDTO
     public DictionaryIdentificator Dictionary { get; }
 }
 
-public class GetAllDictByDictIdQueryHandler : IRequestHandler<GetAllDictByDictIdQuery, Response<List<KeyNameDescPriceDTO>>
+public class GetAllDictByDictIdQueryHandler : IRequestHandler<GetAllDictByDictIdQuery, Response<List<KeyNameDescPriceDTO>>>
 {
     private readonly IUnitOfWork _uow;
     private readonly IMapper _mapper;
@@ -43,16 +43,4 @@ public class GetAllDictByDictIdQueryHandler : IRequestHandler<GetAllDictByDictId
 }
 
 public class GetAllDictByDictIdQueryValidator: AbstractValidator<GetAllDictByDictIdQuery>
-{
-    private readonly IUnitOfWork _uow;
-
-    public GetAllDictByDictIdQueryValidator(IUnitOfWork uow)
-    {
-        _uow = uow;
-
-        RuleFor(p => p.Dictionary)
-            .NotNull()
-            .NotEmpty()
-            .WithMessage("{PropertyName}: error dictId!!");
-    }
-}
+{}

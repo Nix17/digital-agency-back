@@ -6,8 +6,8 @@ using FluentValidation.AspNetCore;
 //using Infrastructure.Identity;
 //using Infrastructure.Identity.Contexts;
 //using Infrastructure.Identity.Models;
-using Infrastructure.Persistence;
-using Infrastructure.Persistence.Contexts;
+using Persistence;
+using Persistence.Contexts;
 using Infrastructure.Shared;
 
 using Microsoft.AspNetCore.Http.Features;
@@ -74,8 +74,8 @@ using (var scope = app.Services.CreateScope())
         //await identityContext.Database.MigrateAsync();
 
         var persistenceContext = services.GetRequiredService<ApplicationDbContext>();
-        await persistenceContext.Database.MigrateAsync();
         await Persistence.Seeds.DatabaseInitializer.SeedAsync(persistenceContext);
+        await persistenceContext.Database.MigrateAsync();
 
         Log.Information("Migrations Applied");
     }

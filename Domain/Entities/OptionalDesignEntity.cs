@@ -13,11 +13,7 @@ public class OptionalDesignEntity : DictionaryEntity, IDictionaryEntity
     {
     }
 
-    public OptionalDesignEntity(string name, string description, int price, string iniName = "") : base(name, description, price)
+    public OptionalDesignEntity(string name, string description, int price) : base(name, description, price)
     {
-        Created = DateTime.Now;
-        LastModified = DateTime.Now;
-        CreatedBy = iniName;
-        LastModifiedBy = iniName;
     }
 }

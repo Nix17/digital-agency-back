@@ -39,9 +39,8 @@ public class CreateDictCommandHandler : IRequestHandler<CreateDictCommand, Respo
 
     public async Task<Response<int>> Handle(CreateDictCommand cmd, CancellationToken cancellationToken)
     {
-        var obj = _mapper.Map<DictionaryEntity>(cmd.Data);
-        await _uow.DictRepo.CreateNewRecordAsync(obj, cmd.Dictionary);
-        return new Response<int>(obj.Id);
+        var resId = await _uow.DictRepo.CreateNewRecordAsync(cmd.Data, cmd.Dictionary);
+        return new Response<int>(resId);
     }
 }
 
@@ -52,11 +51,6 @@ public class CreateDictCommandValidator: AbstractValidator<CreateDictCommand>
     public CreateDictCommandValidator(IUnitOfWork uow)
     {
         _uow = uow;
-
-        RuleFor(p => p.Dictionary)
-            .NotEmpty()
-            .NotNull()
-            .WithMessage("{PropertyName}: error!!");
 
         RuleFor(p => p.Data)
             .NotNull()

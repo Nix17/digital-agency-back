@@ -20,19 +20,66 @@ public class DictionaryProfile: Profile
     {
         _cache = cache ?? throw new ArgumentNullException(nameof(cache));
 
-        CreateMap<DictionaryEntity, SiteTypeEntity>();
-        CreateMap<DictionaryEntity, SiteModulesEntity>();
-        CreateMap<DictionaryEntity, SiteDesignEntity>();
-        CreateMap<DictionaryEntity, OptionalDesignEntity>();
-        CreateMap<DictionaryEntity, SiteSupportEntity>();
+        CreateMap<DictionaryEntity, SiteTypeEntity>()
+            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+            .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
+            .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Price))
+            ;
+        CreateMap<DictionaryEntity, SiteModulesEntity>()
+            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+            .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
+            .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Price))
+            ;
+        CreateMap<DictionaryEntity, SiteDesignEntity>()
+            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+            .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
+            .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Price))
+            ;
+        CreateMap<DictionaryEntity, OptionalDesignEntity>()
+            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+            .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
+            .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Price))
+            ;
+        CreateMap<DictionaryEntity, SiteSupportEntity>()
+            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+            .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
+            .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Price))
+            ;
 
         CreateMap<DictionaryEntity, KeyNameDescPriceDTO>();
 
+        //CreateMap<SiteTypeEntity, KeyNameDescPriceDTO>();
+        //CreateMap<SiteModulesEntity, KeyNameDescPriceDTO>();
+        //CreateMap<SiteDesignEntity, KeyNameDescPriceDTO>();
+        //CreateMap<OptionalDesignEntity, KeyNameDescPriceDTO>();
+        //CreateMap<SiteSupportEntity, KeyNameDescPriceDTO>();
+
+
         CreateMap<DictionaryForm, DictionaryEntity>();
-        CreateMap<DictionaryForm, SiteTypeEntity>();
-        CreateMap<DictionaryForm, SiteModulesEntity>();
-        CreateMap<DictionaryForm, SiteDesignEntity>();
-        CreateMap<DictionaryForm, OptionalDesignEntity>();
-        CreateMap<DictionaryForm, SiteSupportEntity>();
+        CreateMap<DictionaryForm, SiteTypeEntity>()
+            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+            .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
+            .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Price))
+            ;
+        CreateMap<DictionaryForm, SiteModulesEntity>()
+            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+            .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
+            .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Price))
+            ;
+        CreateMap<DictionaryForm, SiteDesignEntity>()
+            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+            .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
+            .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Price))
+            ;
+        CreateMap<DictionaryForm, OptionalDesignEntity>()
+            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+            .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
+            .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Price))
+            ;
+        CreateMap<DictionaryForm, SiteSupportEntity>()
+            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+            .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
+            .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Price))
+            ;
     }
 }

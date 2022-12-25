@@ -1,4 +1,5 @@
-﻿using Application.Interfaces.Services;
+﻿using Application.DTO.Common;
+using Application.Interfaces.Services;
 using Application.Wrappers;
 using AutoMapper;
 using Domain.Data;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Dictionary.Commands;
 
-public class DeleteSelectedDictCommand : IRequest<Response<string>>
+public class DeleteSelectedDictCommand : IRequest<Response<MessageResponse>>
 {
     public DeleteSelectedDictCommand(DictionaryIdentificator dictionary, List<int> ids)
     {
@@ -24,7 +25,7 @@ public class DeleteSelectedDictCommand : IRequest<Response<string>>
     public List<int> Ids { get; }
 }
 
-public class DeleteSelectedDictCommandHandler : IRequestHandler<DeleteSelectedDictCommand, Response<string>>
+public class DeleteSelectedDictCommandHandler : IRequestHandler<DeleteSelectedDictCommand, Response<MessageResponse>>
 {
     private readonly IUnitOfWork _uow;
     private readonly IMapper _mapper;
@@ -35,11 +36,12 @@ public class DeleteSelectedDictCommandHandler : IRequestHandler<DeleteSelectedDi
         _mapper = mapper;
     }
 
-    public async Task<Response<string>> Handle(DeleteSelectedDictCommand cmd, CancellationToken cancellationToken)
+    public async Task<Response<MessageResponse>> Handle(DeleteSelectedDictCommand cmd, CancellationToken cancellationToken)
     {
         await _uow.DictRepo.DeleteSelectRecordsAsync(cmd.Ids, cmd.Dictionary);
         var msg = $"Deleted: {cmd.Ids.Count} of {cmd.Ids}";
-        return new Response<string>(msg);
+        var res = new MessageResponse(msg);
+        return new Response<MessageResponse>(res);
     }
 }
 
@@ -60,7 +62,7 @@ public class DeleteSelectedDictCommandValidator: AbstractValidator<DeleteSelecte
     {
         foreach(var id in cmd.Ids)
         {
-            if (!_uow.DictRepo.ExistsAsync(id, cmd.Dictionary)) return false;
+            if (!(await _uow.DictRepo.ExistsAsync(id, cmd.Dictionary))) return false;
         }
         return true;
     }

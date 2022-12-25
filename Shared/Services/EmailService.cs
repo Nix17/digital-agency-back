@@ -11,7 +11,7 @@ using Microsoft.Extensions.Options;
 
 using MimeKit;
 
-namespace Infrastructure.Shared.Services;
+namespace Shared.Services;
 public class EmailService : IEmailService
 {
     public MailSettings _mailSettings { get; }
