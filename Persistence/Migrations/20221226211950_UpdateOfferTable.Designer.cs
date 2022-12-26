@@ -12,8 +12,8 @@ using Persistence.Contexts;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221226204127_NewTables_26_12_2022")]
-    partial class NewTables26122022
+    [Migration("20221226211950_UpdateOfferTable")]
+    partial class UpdateOfferTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -104,6 +104,10 @@ namespace Persistence.Migrations
                         .HasColumnType("text")
                         .HasColumnName("created_by");
 
+                    b.Property<int>("DevelopmentTimelineId")
+                        .HasColumnType("integer")
+                        .HasColumnName("development_timeline_id");
+
                     b.Property<DateTime>("LastModified")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("last_modified");
@@ -135,6 +139,9 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id")
                         .HasName("pk_offers");
+
+                    b.HasIndex("DevelopmentTimelineId")
+                        .HasDatabaseName("ix_offers_development_timeline_id");
 
                     b.HasIndex("OfferNumber")
                         .IsUnique()
@@ -648,6 +655,13 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.OfferEntity", b =>
                 {
+                    b.HasOne("Domain.Entities.DevelopmentTimelineEntity", "DevelopmentTimeline")
+                        .WithMany()
+                        .HasForeignKey("DevelopmentTimelineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_offers_development_timelines_development_timeline_id");
+
                     b.HasOne("Domain.Entities.SiteDesignEntity", "SiteDesign")
                         .WithMany()
                         .HasForeignKey("SiteDesignId")
@@ -668,6 +682,8 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_offers_users_user_id");
+
+                    b.Navigation("DevelopmentTimeline");
 
                     b.Navigation("SiteDesign");
 

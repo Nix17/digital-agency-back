@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Persistence.Contexts;
@@ -11,9 +12,11 @@ using Persistence.Contexts;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221226205838_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,10 +104,6 @@ namespace Persistence.Migrations
                         .HasColumnType("text")
                         .HasColumnName("created_by");
 
-                    b.Property<int>("DevelopmentTimelineId")
-                        .HasColumnType("integer")
-                        .HasColumnName("development_timeline_id");
-
                     b.Property<DateTime>("LastModified")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("last_modified");
@@ -136,9 +135,6 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id")
                         .HasName("pk_offers");
-
-                    b.HasIndex("DevelopmentTimelineId")
-                        .HasDatabaseName("ix_offers_development_timeline_id");
 
                     b.HasIndex("OfferNumber")
                         .IsUnique()
@@ -652,13 +648,6 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.OfferEntity", b =>
                 {
-                    b.HasOne("Domain.Entities.DevelopmentTimelineEntity", "DevelopmentTimeline")
-                        .WithMany()
-                        .HasForeignKey("DevelopmentTimelineId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_offers_development_timelines_development_timeline_id");
-
                     b.HasOne("Domain.Entities.SiteDesignEntity", "SiteDesign")
                         .WithMany()
                         .HasForeignKey("SiteDesignId")
@@ -679,8 +668,6 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_offers_users_user_id");
-
-                    b.Navigation("DevelopmentTimeline");
 
                     b.Navigation("SiteDesign");
 

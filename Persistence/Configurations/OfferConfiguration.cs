@@ -18,6 +18,7 @@ public class OfferConfiguration : IEntityTypeConfiguration<OfferEntity>
         builder.ToTable("offers").HasIndex(m => m.UserId);
         builder.ToTable("offers").HasIndex(m => m.SiteTypeId);
         builder.ToTable("offers").HasIndex(m => m.SiteDesignId);
+        builder.ToTable("offers").HasIndex(m => m.DevelopmentTimelineId);
         builder.Property(m => m.Comment).HasDefaultValue("").IsRequired().HasMaxLength(1000);
     }
 }

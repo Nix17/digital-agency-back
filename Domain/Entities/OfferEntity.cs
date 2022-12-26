@@ -15,6 +15,9 @@ public class OfferEntity: AuditableBaseEntity
     public UserEntity User { get; set; }
     public double Cost { get; set; }
 
+    public int DevelopmentTimelineId { get; set; }
+    public DevelopmentTimelineEntity DevelopmentTimeline { get; set; }
+
     public int SiteTypeId { get; set; }
     public SiteTypeEntity SiteType { get; set; }
 
