@@ -15,6 +15,17 @@ public interface IUnitOfWork
     IOptionalDesignRepo OptionalDesignRepo { get; }
     ISiteSupportRepo SiteSupportRepo { get; }
 
+    IDevelopmentTimelineRepo DevelopmentTimelineRepo { get; }
+
+    IUserRepo UserRepo { get; }
+
+    IOfferRepo OfferRepo { get; }
+    IOfferModuleRepo OfferModuleRepo { get; }
+    IOfferOptionalDesignsRepo OfferOptionalDesignsRepo { get; }
+    IOfferSupportRepo OfferSupportRepo { get; }
+    IOrderRepo OrderRepo { get; }
+
+
     Task<bool> SaveChangesAsync();
     Task BeginAsync();
     Task CommitAsync();

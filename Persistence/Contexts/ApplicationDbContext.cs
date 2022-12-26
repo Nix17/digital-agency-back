@@ -39,6 +39,15 @@ public class ApplicationDbContext : DbContext
     public DbSet<OptionalDesignEntity> OptionalDesigns { get; set; }
     public DbSet<SiteSupportEntity> SiteSupports { get; set; }
 
+    public DbSet<DevelopmentTimelineEntity> DevelopmentTimelines { get; set; }
+
+    public DbSet<UserEntity> Users { get; set; }
+
+    public DbSet<OfferEntity> Offers { get; set; }
+    public DbSet<OfferModulesEntity> OfferModules { get; set; }
+    public DbSet<OfferSupportEntity> OfferSupports { get; set; }
+    public DbSet<OfferOptionalDesignsEntity> OfferOptionalDesigns { get; set; }
+    public DbSet<OrderEntity> Orders { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -57,6 +66,14 @@ public class ApplicationDbContext : DbContext
         builder.ApplyConfiguration(new SiteDesignConfiguration());
         builder.ApplyConfiguration(new OptionalDesignConfiguration());
         builder.ApplyConfiguration(new SiteSupportConfiguration());
+        builder.ApplyConfiguration(new DevelopmentTimelineConfiguration());
+        builder.ApplyConfiguration(new UserConfiguration());
+
+        builder.ApplyConfiguration(new OfferConfiguration());
+        builder.ApplyConfiguration(new OfferModulesConfiguration());
+        builder.ApplyConfiguration(new OfferOptionalDesignsConfiguration());
+        builder.ApplyConfiguration(new OfferSupportConfiguration());
+        builder.ApplyConfiguration(new OrderConfiguration());
 
 
         base.OnModelCreating(builder);
