@@ -30,6 +30,7 @@ public static class ServiceExtensions
             cfg.AddProfile(new GeneralProfile(cache));
             cfg.AddProfile(new DictionaryProfile(cache));
             cfg.AddProfile(new DevelopmentTimelineProfile(cache));
+            cfg.AddProfile(new UserProfile(cache));
         }).CreateMapper());
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         services.AddMediatR(Assembly.GetExecutingAssembly());
