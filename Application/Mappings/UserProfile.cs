@@ -1,4 +1,5 @@
-﻿using Application.DTO.User;
+﻿using Application.DTO.Common;
+using Application.DTO.User;
 using Application.Interfaces.Services;
 using AutoMapper;
 using Domain.Entities;
@@ -26,5 +27,9 @@ public class UserProfile: Profile
         CreateMap<UserUpdateForm, UserEntity>();
 
         CreateMap<UserEntity, UserDTO>();
+        CreateMap<UserEntity, KeyValueDTO>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+            .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.LastName + " " + src.FirstName[0] + "." + src.MiddleName[0] + "."))
+            ;
     }
 }

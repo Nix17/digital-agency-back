@@ -9,4 +9,5 @@ namespace Application.Interfaces.Repositories;
 
 public interface IOfferRepo: IGenericRepository<OfferEntity>
 {
+    Task<int> GetMaxOfferNumber();
 }

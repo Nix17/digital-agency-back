@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces.Repositories;
 using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using Persistence.Contexts;
 using System;
 using System.Collections.Generic;
@@ -13,5 +14,10 @@ public class OfferRepo : GenericRepository<OfferEntity>, IOfferRepo
 {
     public OfferRepo(ApplicationDbContext dbContext) : base(dbContext)
     {
+    }
+
+    public async Task<int> GetMaxOfferNumber()
+    {
+        return await _context.Offers.MaxAsync(p => p.OfferNumber);
     }
 }

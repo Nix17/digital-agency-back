@@ -21,4 +21,9 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DTO\Order\" />
+    <Folder Include="Features\Offer\Commands\" />
+  </ItemGroup>
+
 </Project>

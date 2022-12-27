@@ -27,4 +27,8 @@ public class OfferEntity: AuditableBaseEntity
     public DateTime OrderDate { get; set; }
 
     public string Comment { get; set; }
+
+    public ICollection<OfferModulesEntity> OfferModules { get; set; } = new List<OfferModulesEntity>();
+    public ICollection<OfferOptionalDesignsEntity> OfferOptionalDesigns { get; set; } = new List<OfferOptionalDesignsEntity>();
+    public ICollection<OfferSupportEntity> OfferSupports { get; set; } = new List<OfferSupportEntity>();
 }

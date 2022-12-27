@@ -5,20 +5,26 @@ namespace WebAPI.Controllers;
 
 public class OrderController: BaseApiController
 {
-    [HttpGet("{id}")]
+    [HttpGet]
     public async Task<IActionResult> GetAll()
     {
         return Ok();
     }
 
-    [HttpPost("{id}")]
+    [HttpPost]
     public async Task<IActionResult> AddNew()
     {
         return Ok();
     }
 
+    [HttpGet("{id}")]
+    public async Task<IActionResult> AddNew([FromRoute] Guid id)
+    {
+        return Ok();
+    }
+
     [HttpPut("{id}")]
-    public async Task<IActionResult> Update()
+    public async Task<IActionResult> Update([FromRoute] Guid id)
     {
         return Ok();
     }
