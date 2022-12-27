@@ -1,5 +1,4 @@
-﻿using Application.DTO.Common;
-using Application.DTO.Dictionary;
+﻿using Application.DTO.Dictionary;
 using Application.Interfaces.Services;
 using Application.Wrappers;
 using AutoMapper;

@@ -1,5 +1,4 @@
-﻿using Application.DTO.Common;
-using Application.Interfaces.Services;
+﻿using Application.Interfaces.Services;
 using Application.Wrappers;
 using AutoMapper;
 using Domain.Data;

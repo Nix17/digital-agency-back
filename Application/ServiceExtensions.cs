@@ -29,7 +29,7 @@ public static class ServiceExtensions
             var cache = provider.GetService<IMemoryCacheExtended>();
             cfg.AddProfile(new GeneralProfile(cache));
             cfg.AddProfile(new DictionaryProfile(cache));
-
+            cfg.AddProfile(new DevelopmentTimelineProfile(cache));
         }).CreateMapper());
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         services.AddMediatR(Assembly.GetExecutingAssembly());
