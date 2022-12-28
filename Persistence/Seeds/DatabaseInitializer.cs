@@ -350,7 +350,7 @@ public static class DatabaseInitializer
                     200
                 );
             list.Add(obj6);
-            //-------------
+            //------------- 
 
             var obj7 = new SiteSupportEntity(
                     "Изменение телефона",

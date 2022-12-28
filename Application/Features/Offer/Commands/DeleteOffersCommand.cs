@@ -1,6 +1,7 @@
 ﻿using Application.Interfaces.Services;
 using Application.Wrappers;
 using AutoMapper;
+using Domain.Entities;
 using FluentValidation;
 using MediatR;
 using System;
@@ -35,6 +36,32 @@ public class DeleteOffersCommandHandler : IRequestHandler<DeleteOffersCommand, R
     public async Task<Response<MessageResponse>> Handle(DeleteOffersCommand cmd, CancellationToken cancellationToken)
     {
         var items = await _uow.OfferRepo.FindAllAsync(o => cmd.Ids.Contains(o.Id));
+
+        ICollection<OfferModulesEntity> offerModules = new List<OfferModulesEntity>();
+        ICollection<OfferOptionalDesignsEntity> offerOptional = new List<OfferOptionalDesignsEntity>();
+        ICollection<OfferSupportEntity> offerSupports = new List<OfferSupportEntity>();
+
+        foreach (var item in items)
+        {
+            var collection = await _uow.OfferModuleRepo.FindAllAsync(o => o.OfferId == item.Id);
+            offerModules = collection.ToList();
+            if (offerModules.Count > 0) await _uow.OfferModuleRepo.DeleteRangeAsync(offerModules);
+        }
+
+        foreach (var item in items)
+        {
+            var collection = await _uow.OfferOptionalDesignsRepo.FindAllAsync(o => o.OfferId == item.Id);
+            offerOptional = collection.ToList();
+            if (offerOptional.Count > 0) await _uow.OfferOptionalDesignsRepo.DeleteRangeAsync(offerOptional);
+        }
+
+        foreach (var item in items)
+        {
+            var collection = await _uow.OfferSupportRepo.FindAllAsync(o => o.OfferId == item.Id);
+            offerSupports = collection.ToList();
+            if (offerSupports.Count > 0) await _uow.OfferSupportRepo.DeleteRangeAsync(offerSupports);
+        }
+
         await _uow.OfferRepo.DeleteRangeAsync(items);
         var msg = $"Deleted: {items.Count} of {cmd.Ids}";
         var res = new MessageResponse(msg);

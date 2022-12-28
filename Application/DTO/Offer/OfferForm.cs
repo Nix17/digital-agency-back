@@ -26,7 +26,7 @@ public class OfferForm
     public List<int> SiteSupportIds { get; set; }
 }
 
-public class OfferFormValidator: AbstractValidator<OfferForm>
+public class OfferFormValidator : AbstractValidator<OfferForm>
 {
     private readonly IUnitOfWork _uow;
 
@@ -35,19 +35,19 @@ public class OfferFormValidator: AbstractValidator<OfferForm>
         _uow = uow;
 
         RuleFor(p => p.OfferNumber).MustAsync(IsNumUnique).WithMessage("{PropertyName}: error! OfferNumber not unique!");
-        
+
         RuleFor(p => p.UserId).MustAsync(IsUserExist).WithMessage("{PropertyName}: error! UserId doesn't exist!");
-        
+
         RuleFor(p => p.DevelopmentTimelineId).MustAsync(IsDevTimeExist).WithMessage("{PropertyName}: error! DevelopmentTimelineId doesn't exist!");
-        
+
         RuleFor(p => p.SiteDesignId).MustAsync(IsSiteDesignExist).WithMessage("{PropertyName}: error! SiteDesignId doesn't exist!");
-        
+
         RuleFor(p => p.SiteModulesIds).MustAsync(IsSiteModulesIdsExist).WithMessage("{PropertyName}: error! SiteModulesIds doesn't exist!");
-        
+
         RuleFor(p => p.OptionalDesignIds).MustAsync(IsOptionalDesignIdsExist).WithMessage("{PropertyName}: error! OptionalDesignIds doesn't exist!");
-        
+
         RuleFor(p => p.SiteSupportIds).MustAsync(IsSiteSupportIdsExist).WithMessage("{PropertyName}: error! SiteSupportIds doesn't exist!");
-        
+
         RuleFor(p => p.SiteTypeId).MustAsync(IsSiteTypeExist).WithMessage("{PropertyName}: error! SiteTypeId doesn't exist!");
     }
 
@@ -79,7 +79,7 @@ public class OfferFormValidator: AbstractValidator<OfferForm>
 
     private async Task<bool> IsSiteModulesIdsExist(List<int> ids, CancellationToken cancellationToken)
     {
-        foreach(var id in ids)
+        foreach (var id in ids)
         {
             if (!(await _uow.SiteModulesRepo.ExistsAsync(id))) return false;
         }

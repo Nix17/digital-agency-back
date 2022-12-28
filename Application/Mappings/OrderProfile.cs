@@ -1,5 +1,7 @@
-﻿using Application.Interfaces.Services;
+﻿using Application.DTO.Order;
+using Application.Interfaces.Services;
 using AutoMapper;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +17,8 @@ public class OrderProfile: Profile
     public OrderProfile(IMemoryCacheExtended cache)
     {
         _cache = cache ?? throw new ArgumentNullException(nameof(cache));
+
+        CreateMap<OrderForm, OrderEntity>();
+        CreateMap<OrderEntity, OrderDTO>();
     }
 }

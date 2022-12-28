@@ -9,6 +9,12 @@ namespace Domain.Entities;
 
 public class OfferModulesEntity: BaseEntity
 {
+    public OfferModulesEntity(Guid offerId, int siteModulesId)
+    {
+        OfferId = offerId;
+        SiteModulesId = siteModulesId;
+    }
+
     public Guid OfferId { get; set; }
     public OfferEntity Offer { get; set; }
 

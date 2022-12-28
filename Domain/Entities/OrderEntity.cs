@@ -15,5 +15,7 @@ public class OrderEntity: AuditableBaseEntity
     public Guid UserId { get; set; }
     public UserEntity User { get; set; }
 
+    public DateTime OrderDate { get; set; }
+
     public bool Agreement { get; set; }
 }
