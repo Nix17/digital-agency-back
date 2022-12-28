@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using Application.Interfaces.Services;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,9 +23,9 @@ public class UserRegFormValidator : AbstractValidator<UserRegForm>
     public UserRegFormValidator()
     {
         RuleFor(p => p.Email)
-            .NotEmpty()
-            .NotNull()
-            .WithMessage("{PropertyName}: error!");
+            .NotEmpty().WithMessage("{PropertyName}: error! must not empty")
+            .NotNull().WithMessage("{PropertyName}: error! must not null")
+            ;
 
         RuleFor(p => p.Password)
             .NotEmpty()

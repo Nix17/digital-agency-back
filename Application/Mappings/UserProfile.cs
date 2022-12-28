@@ -31,5 +31,7 @@ public class UserProfile: Profile
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
             .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.LastName + " " + src.FirstName[0] + "." + src.MiddleName[0] + "."))
             ;
+
+        CreateMap<UserEntity, Account>();
     }
 }

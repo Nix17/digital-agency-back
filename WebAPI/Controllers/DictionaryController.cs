@@ -2,8 +2,10 @@
 using Application.Features.Dictionary.Commands;
 using Application.Features.Dictionary.Queries;
 using Domain.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Security.Claims;
 
 namespace WebApi.Controllers;
 
