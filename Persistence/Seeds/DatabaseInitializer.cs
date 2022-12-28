@@ -413,5 +413,181 @@ public static class DatabaseInitializer
             await db.SaveChangesAsync();
         }
         #endregion
+
+        #region Users
+        if (await db.Users.CountAsync() == 0) 
+        {
+            var list = new List<UserEntity>();
+
+            var user1 = new UserEntity(
+                                        "vd@mail.ru",
+                                        "vdvdvd",
+                                        "admin", 
+                                        "+7(999)999-99-99",
+                                        "Валерия",
+                                        "Андреевна",
+                                        "Дружинина"
+                                        );// или admin
+
+            list.Add(user1);
+            // ------------------------
+
+            var user2 = new UserEntity(
+                                        "mv@mail.ru",
+                                        "mvmvmv",
+                                        "admin",
+                                        "+7(999)999-99-98",
+                                        "Воротилова",
+                                        "Маргарита",
+                                        "Юрьевна"
+                                        );// или admin
+
+            list.Add(user2);
+            // ------------------------ 
+
+            var user3 = new UserEntity(
+                                       "yk@mail.ru",
+                                       "ykykyk",
+                                       "user",
+                                       "+7(999)999-99-97",
+                                       "Кулакова",
+                                       "Яна",
+                                       "Алексеевна"
+                                       );// или admin
+
+            list.Add(user3);
+            // ------------------------ 
+
+            var user4 = new UserEntity(
+                                       "kk@mail.ru",
+                                       "kkkkkk",
+                                       "user",
+                                       "+7(999)999-99-96",
+                                       "Хлусович",
+                                       "Кристина",
+                                       "Витальевна"
+                                       );// или admin
+
+            list.Add(user4);
+            // ------------------------ 
+
+            var user5 = new UserEntity(
+                                       "se@mail.ru",
+                                       "sesese",
+                                       "user",
+                                       "+7(999)999-99-95",
+                                       "Стрелова",
+                                       "Екатерина",
+                                       "Александровна"
+                                       );// или admin
+
+            list.Add(user5);
+            // ------------------------ 
+
+
+            var user6 = new UserEntity(
+                                           "bе@mail.ru",
+                                           "bеbеbе",
+                                           "user",
+                                           "+7(999)999-99-94",
+                                           "Баранова",
+                                           "Екатерина",
+                                           "Сергеевна"
+                                           );// или admin
+
+            list.Add(user6);
+            // ------------------------ 
+
+
+
+            var user7 = new UserEntity(
+                                       "ie@mail.ru",
+                                       "ieieie",
+                                       "user",
+                                       "+7(999)999-99-93",
+                                       "Иванова",
+                                       "Екатерина",
+                                       "Андреевна"
+                                       );// или admin
+
+            list.Add(user7);
+            // ------------------------ 
+
+
+            var user8 = new UserEntity(
+                                       "dh@mail.ru",
+                                       "hdhdhd",
+                                       "user",
+                                       "+7(999)999-99-92",
+                                       "Хроменков",
+                                       "Дмитрий",
+                                       "Алексеевич"
+                                       );// или admin
+
+            list.Add(user8);
+            // ------------------------ 
+
+
+            var user9 = new UserEntity(
+                                       "nk@mail.ru",
+                                       "nknknk",
+                                       "user",
+                                       "+7(999)999-99-91",
+                                       "Косов",
+                                       "Никита",
+                                       "Станиславович"
+                                       );// или admin
+
+            list.Add(user9);
+            // ------------------------ 
+
+
+            var user10 = new UserEntity(
+                                       "iz@mail.ru",
+                                       "iziziz",
+                                       "user",
+                                       "+7(999)999-99-90",
+                                       "Зубарева",
+                                       "Ирина",
+                                       "Руслановна"
+                                       );// или admin
+
+            list.Add(user10);
+            // ------------------------ 
+
+
+            var user11 = new UserEntity(
+                                       "dp@mail.ru",
+                                       "dpdpdp",
+                                       "user",
+                                       "+7(999)999-99-89",
+                                       "Плешков",
+                                       "Даниил",
+                                       "Романович"
+                                       );// или admin
+
+            list.Add(user11);
+            // ------------------------ 
+
+
+            var user12 = new UserEntity(
+                                       "ad@mail.ru",
+                                       "adadad",
+                                       "user",
+                                       "+7(999)999-99-88",
+                                       "Данилова",
+                                       "Анна",
+                                       "Даниловна"
+                                       );// или admin
+
+            list.Add(user12);
+            // ------------------------ 
+
+
+            //####################################
+            await db.Users.AddRangeAsync(list);
+            await db.SaveChangesAsync();
+        }
+        #endregion
     }
 }

@@ -29,8 +29,8 @@ public class ApplicationDbContext : DbContext
     {
         ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         _dateTime = dateTime;
-        //Database.EnsureDeleted();
-        Database.EnsureCreated();
+        //Database.EnsureDeleted(); 
+        Database.EnsureCreated(); 
     }
 
     public DbSet<SiteTypeEntity> SiteTypes { get; set; }
