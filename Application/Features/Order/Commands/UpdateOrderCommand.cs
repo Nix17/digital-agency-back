@@ -56,10 +56,28 @@ public class UpdateOrderCommandValidator: AbstractValidator<UpdateOrderCommand>
         RuleFor(p => p.Id)
             .MustAsync(IsExist)
             .WithMessage("{PropertyName}: Error! Order doesn't exist!");
+
+        RuleFor(p => p.Data.OfferId)
+            .MustAsync(IsOfferExist)
+            .WithMessage("{PropertyName}: Error! offer doesn't exist");
+
+        RuleFor(p => p.Data.UserId)
+            .MustAsync(IsUserExist)
+            .WithMessage("{PropertyName}: Error! User doesn't exist");
     }
 
     private async Task<bool> IsExist(Guid id, CancellationToken cancellationToken)
     {
         return await _uow.OrderRepo.ExistsAsync(id);
+    }
+
+    private async Task<bool> IsUserExist(Guid id, CancellationToken cancellationToken)
+    {
+        return await _uow.UserRepo.ExistsAsync(id);
+    }
+
+    private async Task<bool> IsOfferExist(Guid id, CancellationToken cancellationToken)
+    {
+        return await _uow.OfferRepo.ExistsAsync(id);
     }
 }

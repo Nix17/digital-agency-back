@@ -589,5 +589,37 @@ public static class DatabaseInitializer
             await db.SaveChangesAsync();
         }
         #endregion
+
+        #region devTimeline
+        if (await db.DevelopmentTimelines.CountAsync() == 0)
+        {
+            var list = new List<DevelopmentTimelineEntity>();
+
+            var obj1 = new DevelopmentTimelineEntity(
+                    "Не имеет значения",
+                    1f
+                );
+            list.Add(obj1);
+            //-------------
+
+            var obj2 = new DevelopmentTimelineEntity(
+                    "В течение 3 месяцев",
+                    1.1f
+                );
+            list.Add(obj2);
+            //-------------
+
+            var obj3 = new DevelopmentTimelineEntity(
+                    "в течение месяца",
+                    1.3f
+                );
+            list.Add(obj3);
+            //-------------
+
+            //####################################
+            await db.DevelopmentTimelines.AddRangeAsync(list);
+            await db.SaveChangesAsync();
+        }
+        #endregion
     }
 }
