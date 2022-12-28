@@ -9,6 +9,7 @@ namespace Application.DTO.User;
 public class Account
 {
     public Guid Id { get; set; }
+    public string FirstName { get; set; }
     public string Role { get; set; }
     public DateTime Created { get; set; }
 }
