@@ -19,7 +19,6 @@ namespace Persistence.Contexts;
 public class ApplicationDbContext : DbContext
 {
     private IDbContextTransaction _currentTransaction;
-
     private readonly IDateTimeService _dateTime;
     //private readonly IAuthenticatedUserService _authenticatedUser;
 
