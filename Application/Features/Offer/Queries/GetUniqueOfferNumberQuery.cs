@@ -30,7 +30,7 @@ public class GetUniqueOfferNumberQueryHandler : IRequestHandler<GetUniqueOfferNu
         var count = await _uow.OfferRepo.CountAsync();
         if (count > 0)
         {
-            return new Response<int>(await _uow.OfferRepo.GetMaxOfferNumber());
+            return new Response<int>((await _uow.OfferRepo.GetMaxOfferNumber()) + 1);
         }
         return new Response<int>(1);
     }
