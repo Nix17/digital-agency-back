@@ -1,4 +1,5 @@
-﻿using Application.DTO.Offer;
+﻿using Application.DTO.Common;
+using Application.DTO.Offer;
 using Application.Interfaces.Services;
 using Application.Wrappers;
 using AutoMapper;
@@ -35,9 +36,46 @@ public class GetAllOffersByUserIdQueryHandler : IRequestHandler<GetAllOffersByUs
 
     public async Task<Response<List<OfferDTO>>> Handle(GetAllOffersByUserIdQuery req, CancellationToken cancellationToken)
     {
-        var items = await _uow.OfferRepo.FindAllAsync(o => o.UserId == req.Id);
-        var res = _mapper.Map<List<OfferDTO>>(items);
-        return new Response<List<OfferDTO>>(res);
+        var resultsOffers = new List<OfferDTO>();
+        var offers = await _uow.OfferRepo.FindAllIncludingAsync(o => o.UserId == req.Id, noTrack: true, x => x.User, x => x.DevelopmentTimeline, x => x.SiteType, x => x.SiteDesign, x => x.OfferModules, x => x.OfferOptionalDesigns, x => x.OfferSupports);
+
+        foreach (var offer in offers)
+        {
+            var modulesIds = new List<int>();
+            foreach (var item in offer.OfferModules)
+            {
+                modulesIds.Add(item.SiteModulesId);
+            }
+            var modules = await _uow.SiteModulesRepo.FindAllAsync(x => modulesIds.Contains(x.Id));
+            var resMods = _mapper.Map<List<KeyNameDescPriceDTO>>(modules);
+
+            //#########
+            var optionalIds = new List<int>();
+            foreach (var item in offer.OfferOptionalDesigns)
+            {
+                optionalIds.Add(item.OptionalDesignId);
+            }
+            var optionals = await _uow.OptionalDesignRepo.FindAllAsync(x => optionalIds.Contains(x.Id));
+            var resOptionals = _mapper.Map<List<KeyNameDescPriceDTO>>(optionals);
+
+            //############
+            var supportIds = new List<int>();
+            foreach (var item in offer.OfferSupports)
+            {
+                supportIds.Add(item.SiteSupportId);
+            }
+            var support = await _uow.SiteModulesRepo.FindAllAsync(x => supportIds.Contains(x.Id));
+            var resSupport = _mapper.Map<List<KeyNameDescPriceDTO>>(support);
+
+            var res = _mapper.Map<OfferDTO>(offer);
+            res.SiteModules = resMods;
+            res.OptionalDesign = resOptionals;
+            res.SitySupport = resSupport;
+
+            resultsOffers.Add(res);
+        }
+
+        return new Response<List<OfferDTO>>(resultsOffers);
     }
 }
 
