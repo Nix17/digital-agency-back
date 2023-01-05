@@ -51,4 +51,16 @@ public class OrderController: BaseApiController
         return Ok(await Mediator.Send(new DeleteOrdersCommand(ids)));
     }
 
+    [HttpGet("export-word")]
+    public async Task<IActionResult> ExportToWord()
+    {
+        var docWord = await Mediator.Send(new ExportDataToWord());
+
+        return File(
+                fileContents: docWord,
+                contentType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                fileDownloadName: "OrdersFile.docx"
+            );
+    }
+
 }
