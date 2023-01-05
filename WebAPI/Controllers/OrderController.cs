@@ -39,9 +39,16 @@ public class OrderController: BaseApiController
         return Ok(await Mediator.Send(new UpdateOrderCommand(id, form)));
     }
 
+    [HttpPut("{id}/order-cost")]
+    public async Task<IActionResult> UpdateOrderCost([FromRoute] Guid id, [FromBody] OrderFormUpd form)
+    {
+        return Ok(await Mediator.Send(new UpdateOrderCostCommand(id, form)));
+    }
+
     [HttpPost("delete")]
     public async Task<IActionResult> DeleteSelected([FromBody] List<Guid> ids)
     {
         return Ok(await Mediator.Send(new DeleteOrdersCommand(ids)));
     }
+
 }

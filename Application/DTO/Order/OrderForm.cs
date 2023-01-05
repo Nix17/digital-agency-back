@@ -18,6 +18,11 @@ public class OrderForm
     public bool Agreement { get; set; }
 }
 
+public class OrderFormUpd
+{
+    public double OrderCost { get; set; }
+}
+
 //public class OrderFormValidator: AbstractValidator<OrderForm>
 //{
 //    private readonly IUnitOfWork _uow;
