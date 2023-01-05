@@ -29,7 +29,7 @@ public class ApplicationDbContext : DbContext
     {
         ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         _dateTime = dateTime;
-        //Database.EnsureDeleted(); 
+        //Database.EnsureDeleted();
         Database.EnsureCreated(); 
     }
 

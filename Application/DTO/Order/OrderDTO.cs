@@ -12,6 +12,7 @@ public class OrderDTO : AuditableBaseDTO
 {
     public OfferDTO Offer { get; set; }
     public KeyValueDTO User { get; set; }
+    public double OrderCost { get; set; }
     public DateTime OrderDate { get; set; }
     public bool Agreement { get; set; }
 }

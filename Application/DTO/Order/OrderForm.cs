@@ -13,6 +13,7 @@ public class OrderForm
 {
     public Guid OfferId { get; set; }
     public Guid UserId { get; set; }
+    public double OrderCost { get; set; }
     public DateTime OrderDate { get; set; }
     public bool Agreement { get; set; }
 }

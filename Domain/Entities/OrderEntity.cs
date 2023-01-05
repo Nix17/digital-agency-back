@@ -17,5 +17,7 @@ public class OrderEntity: AuditableBaseEntity
 
     public DateTime OrderDate { get; set; }
 
+    public double OrderCost { get; set; }
+
     public bool Agreement { get; set; }
 }
