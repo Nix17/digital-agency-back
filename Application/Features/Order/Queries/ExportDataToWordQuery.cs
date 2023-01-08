@@ -13,25 +13,25 @@ using Novacode;
 
 namespace Application.Features.Order.Queries;
 
-public class ExportDataToWord : IRequest<byte[]>
+public class ExportDataToWordQuery : IRequest<byte[]>
 {
-    public ExportDataToWord()
+    public ExportDataToWordQuery()
     {
     }
 }
 
-public class ExportDataToWordHandler : IRequestHandler<ExportDataToWord, byte[]>
+public class ExportDataToWordQueryHandler : IRequestHandler<ExportDataToWordQuery, byte[]>
 {
     private readonly IUnitOfWork _uow;
     private readonly IMapper _mapper;
 
-    public ExportDataToWordHandler(IUnitOfWork uow, IMapper mapper)
+    public ExportDataToWordQueryHandler(IUnitOfWork uow, IMapper mapper)
     {
         _uow = uow;
         _mapper = mapper;
     }
 
-    public async Task<byte[]> Handle(ExportDataToWord request, CancellationToken cancellationToken)
+    public async Task<byte[]> Handle(ExportDataToWordQuery request, CancellationToken cancellationToken)
     {
         var resultsOrders = new List<OrderDTO>();
 

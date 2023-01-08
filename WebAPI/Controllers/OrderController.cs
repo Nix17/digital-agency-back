@@ -15,6 +15,12 @@ public class OrderController: BaseApiController
         return Ok(await Mediator.Send(new GetAllOrdersQuery()));
     }
 
+    [HttpPost("agreement")]
+    public async Task<IActionResult> GetAllByAgreement([FromBody] bool agree)
+    {
+        return Ok(await Mediator.Send(new GetAllOrdersByAgreementQuery(agree)));
+    }
+
     [HttpPost]
     public async Task<IActionResult> AddNew([FromBody] OrderForm form)
     {
@@ -54,7 +60,19 @@ public class OrderController: BaseApiController
     [HttpGet("export-word")]
     public async Task<IActionResult> ExportToWord()
     {
-        var docWord = await Mediator.Send(new ExportDataToWord());
+        var docWord = await Mediator.Send(new ExportDataToWordQuery());
+
+        return File(
+                fileContents: docWord,
+                contentType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                fileDownloadName: "OrdersFile.docx"
+            );
+    }
+
+    [HttpGet("{userId}/export-word")]
+    public async Task<IActionResult> ExportToWordByUserId([FromRoute] Guid userId)
+    {
+        var docWord = await Mediator.Send(new ExportDataToWordUserIdQuery(userId));
 
         return File(
                 fileContents: docWord,
