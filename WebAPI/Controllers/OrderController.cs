@@ -81,4 +81,16 @@ public class OrderController: BaseApiController
             );
     }
 
+    [HttpPost("export-word/date")]
+    public async Task<IActionResult> exportDataToWordByDate([FromBody] OrderListIdAgreementForm form)
+    {
+        var docWord = await Mediator.Send(new ExportDataToWordByDateQuery(form.Ids, form.Agreement));
+
+        return File(
+                fileContents: docWord,
+                contentType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                fileDownloadName: "OrdersFile.docx"
+            );
+    }
+
 }

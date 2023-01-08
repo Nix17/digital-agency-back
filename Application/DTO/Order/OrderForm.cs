@@ -23,6 +23,12 @@ public class OrderFormUpd
     public double OrderCost { get; set; }
 }
 
+public class OrderListIdAgreementForm
+{
+    public List<Guid> Ids { get; set; }
+    public bool Agreement { get; set; }
+}
+
 //public class OrderFormValidator: AbstractValidator<OrderForm>
 //{
 //    private readonly IUnitOfWork _uow;
