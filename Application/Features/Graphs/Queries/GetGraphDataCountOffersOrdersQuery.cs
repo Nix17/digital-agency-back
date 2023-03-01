@@ -71,7 +71,7 @@ public class GetGraphDataCountOffersOrdersQueryHandler : IRequestHandler<GetGrap
     private List<int> GetEmptyDataCount()
     {
         var result = new List<int>();
-        for(int i = 0; i <= 12; i++)
+        for(int i = 1; i <= 12; i++)
         {
             result.Add(0);
         }
