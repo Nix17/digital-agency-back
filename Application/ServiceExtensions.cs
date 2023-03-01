@@ -33,6 +33,7 @@ public static class ServiceExtensions
             cfg.AddProfile(new UserProfile(cache));
             cfg.AddProfile(new OfferProfile(cache));
             cfg.AddProfile(new OrderProfile(cache));
+            cfg.AddProfile(new GraphProfile(cache));
         }).CreateMapper());
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         services.AddMediatR(Assembly.GetExecutingAssembly());
