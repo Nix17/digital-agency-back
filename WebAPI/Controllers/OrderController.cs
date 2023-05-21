@@ -93,4 +93,15 @@ public class OrderController: BaseApiController
             );
     }
 
+    [HttpGet("{orderId}/export-commercial")]
+    public async Task<IActionResult> ExportCommercialProposal([FromRoute] Guid orderId)
+    {
+        var docWord = await Mediator.Send(new ExportDataCommercialProposalQuery(orderId));
+
+        return File(
+                fileContents: docWord,
+                contentType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                fileDownloadName: "Commercial_Proposal.docx"
+            );
+    }
 }
